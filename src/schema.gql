@@ -1,0 +1,90 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreatePostDto {
+  authorId: String!
+  content: String!
+  title: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input DeletePostDto {
+  id: String!
+}
+
+input FeedPostsDto {
+  authorId: String
+  skip: Float!
+  take: Float!
+}
+
+input GetUserDto {
+  id: String!
+}
+
+input LoginDto {
+  email: String!
+  password: String!
+}
+
+type LoginResponse {
+  accessToken: String
+  user: User
+}
+
+type Mutation {
+  GetUserProfile(queryUserProfile: GetUserDto!): UserInfo!
+  createPost(createSinglePost: CreatePostDto!): Post!
+  deletePost(deleteSinglePost: DeletePostDto!): Post!
+  getPostFeed(feedOfPostsInput: FeedPostsDto): [Post!]!
+  login(loginInput: LoginDto!): LoginResponse!
+  register(signupInput: SignupDto!): User!
+  updatePost(updateSinglePost: UpdatePostDto!): Post!
+}
+
+type Post {
+  authorId: String
+  content: String
+  createdAt: DateTime
+  id: String
+  title: String
+  updatedAt: DateTime
+}
+
+type Query {
+  hello: String!
+}
+
+input SignupDto {
+  email: String!
+  firstName: String!
+  lastName: String!
+  password: String!
+  userName: String!
+}
+
+input UpdatePostDto {
+  content: String
+  id: String!
+  title: String
+}
+
+type User {
+  createdAt: DateTime
+  email: String!
+  firstName: String
+  id: String
+  lastName: String
+  updatedAt: DateTime
+  userName: String
+}
+
+type UserInfo {
+  posts: [Post!]
+  user: User
+}
